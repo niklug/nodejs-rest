@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var http = require('http').Server(app); // http server
 var mysql = require('mysql'); // Mysql include
 var bodyParser = require("body-parser"); // Body parser for fetch posted data
 
@@ -8,7 +7,7 @@ var connection = mysql.createConnection({ // Mysql Connection
     host : 'localhost',
     user : 'root',
     password : '1111',
-    database : 'testdb',
+    database : 'testdb'
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,7 +22,7 @@ app.post('/users', function(req, res){
     var username = req.body.username;
     var password = req.body.password;
     var data = {
-        result : 'Data added succesfully!',
+        result : 'Data added successfully!',
         error : 0
     };
 
@@ -41,6 +40,50 @@ app.post('/users', function(req, res){
     }
 });
 
+app.put('/users',function(req,res){
+    var id = req.body.id;
+    var username = req.body.username;
+    var password = req.body.password;
+
+    var data = {
+        result : 'Data updated successfully!',
+        error : 0
+    };
+
+    if(!!id && !!username && !!password) {
+        connection.query("UPDATE users SET username=?, password=? WHERE id=?",[username, password, id], function(err, rows, fields){
+            if(!!err){
+                data["error"] = 1;
+                data["result"] = "Error Updating data";
+            }
+            res.json(data);
+        });
+    } else {
+        data["result"] = "Please provide all required data";
+        res.json(data);
+    }
+});
+
+app.delete('/users',function(req,res){
+    var id = req.body.id;
+    var data = {
+        result : 'Data deleted successfully!',
+        error : 0
+    };
+
+    if(!!id) {
+        connection.query("DELETE FROM users  WHERE id=?",[id], function(err, rows, fields){
+            if(!!err){
+                data["error"] = 1;
+                data["result"] = "Error Deleting data";
+            }
+            res.json(data);
+        });
+    } else {
+        data["result"] = "Please provide all required data";
+        res.json(data);
+    }
+});
 
 
 app.listen(3001);
