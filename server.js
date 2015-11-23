@@ -18,6 +18,13 @@ app.get('/users',function(req,res){
     });
 });
 
+app.get('/users/:id',function(req,res){
+    var id = req.params.id;
+    connection.query("SELECT * from users WHERE id=?", [id], function(err, rows, fields){
+        res.json(rows);
+    });
+});
+
 app.post('/users', function(req, res){
     var username = req.body.username;
     var password = req.body.password;
