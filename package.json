@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-rest",
+  "version": "1.0.0",
+  "description": "REST API prototype on Express + mysql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niklug/nodejs-rest.git"
+  },
+  "author": "Nikolay Korban",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niklug/nodejs-rest/issues"
+  },
+  "homepage": "https://github.com/niklug/nodejs-rest#readme",
+  "dependencies": {
+    "MD5": "^1.3.0",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "mysql": "^2.9.0"
+  }
+}
