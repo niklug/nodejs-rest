@@ -1,14 +1,8 @@
 var express = require('express');
 var app = express();
-var mysql = require('mysql'); // Mysql include
 var bodyParser = require("body-parser"); // Body parser for fetch posted data
-
-var connection = mysql.createConnection({ // Mysql Connection
-    host : 'localhost',
-    user : 'root',
-    password : '1111',
-    database : 'testdb'
-});
+var connection = require('./db_conf.js');
+var amqp = require('./amqp');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 

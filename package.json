@@ -20,6 +20,9 @@
     "MD5": "^1.3.0",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
-    "mysql": "^2.9.0"
+    "mysql": "^2.9.0",
+    "amqp": "*",
+    "amqplib": "*",
+    "wascally": "*"
   }
 }
